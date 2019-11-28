@@ -14,7 +14,6 @@ import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-//zhuwenxiu
 @Service
 public class QueueHomeService {
     private static String xmlLingFilePath = "C:\\xmlAndZip\\xml\\saveLingXml.xml";
@@ -24,6 +23,7 @@ public class QueueHomeService {
 
     private static String lingFileName = "saveLingXml.xml";
     private static String zhengFileName = "saveZhengXml.xml";
+
 
 
     //调用零部件接口
