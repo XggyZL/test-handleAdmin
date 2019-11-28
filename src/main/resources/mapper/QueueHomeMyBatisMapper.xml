@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.queue.demo.dao.QueueHomeMyBatisDao">
+    <resultMap id="queueStoReserve" type="com.queue.demo.domain.QueueStoReserve"/>
+    <resultMap id="QueueStoCode" type="com.queue.demo.domain.QueueStoCode"/>
+
+    <select id="getSupplierName" resultType="String">
+        SELECT A.Supplier_Name supplierName
+        FROM QUEUE_SUPPLIER A
+        where A.Supplier_Code = #{supplierCode}
+    </select>
+
+    <select id="getQueueStoReserveId" resultType="String">
+        SELECT *
+        FROM (SELECT A.STO_RESERVE_ID "stoReserveId"
+              FROM QUEUE_STO_RESERVE A
+              where A.ORDER_TIME > #{thisDate}
+              order by STO_RESERVE_ID DESC)
+        WHERE ROWNUM = 1
+    </select>
+
+    <insert id="saveStoreReserveInfo" parameterType="com.queue.demo.domain.QueueStoReserve">
+        insert into QUEUE_STO_RESERVE A
+        (A.Sto_Reserve_Id,
+         A.discharge_port,
+         A.driver_tel,
+         A.order_time,
+         A.reserve_arrival_time,
+         A.sto_reserve_state,
+         A.supplier_code,
+         A.COMPANY_NAME,
+         A.CAR_NUM,
+         A.SUPPLIER_NAME)
+        VALUES
+            (#{stoReserveId},
+             #{dischargePort},
+             #{driverTel},
+             #{orderTime},
+             #{reserveArrivalTime},
+             #{stoReserveState},
+             #{supplierCode},
+             #{companyName},
+             #{carNum},
+             #{supplierName})
+    </insert>
+
+    <select id="getNewStoReserveInfoById" resultType="com.queue.demo.domain.QueueStoReserve" parameterType="String">
+        SELECT
+            A.Sto_Reserve_Id       "stoReserveId",
+            A.discharge_port       "dischargePort",
+            A.driver_tel           "driverTel",
+            A.order_time           "orderTime",
+            A.reserve_arrival_time "reserveArrivalTime",
+            A.sto_reserve_state    "stoReserveState",
+            A.supplier_code        "supplierCode",
+            A.COMPANY_NAME         "companyName",
+            A.QUEUE_CODE           "queueCode",
+            A.ARRIVAL_TIME         "arrivalTime",
+            A.CAR_NUM              "carNum"
+        FROM QUEUE_STO_RESERVE A
+        where A.Sto_Reserve_Id = #{stoReserveId}
+    </select>
+
+    <select id="getSortInfo" parameterType="String" resultType="java.util.Map">
+        select
+            Rownum "rowNum",
+            stoReserveId
+        from (SELECT A.STO_RESERVE_ID stoReserveId
+              FROM QUEUE_STO_RESERVE A
+              where A.DISCHARGE_PORT = #{dischargePort}
+                    AND TO_DATE(A.RESERVE_ARRIVAL_TIME, 'yyyy/mm/dd hh24:mi')
+                    BETWEEN
+                    (TO_DATE(#{reserveArrivalTime}, 'yyyy-mm-dd hh24:mi') +
+                     INTERVAL '-30' MINUTE)
+                    AND
+                    (TO_DATE(#{reserveArrivalTime}, 'yyyy-mm-dd hh24:mi') +
+                     INTERVAL '30' MINUTE)
+              ORDER BY RESERVE_ARRIVAL_TIME)
+    </select>
+
+    <delete id="cancelReserveOrder" parameterType="String">
+        delete from QUEUE_STO_RESERVE a
+        where a.sto_reserve_id = #{stoReserveId}
+    </delete>
+
+    <select id="getStoReserveListByTel" parameterType="String" resultType="com.queue.demo.domain.QueueStoReserve">
+        SELECT
+            A.Sto_Reserve_Id       "stoReserveId",
+            A.discharge_port       "dischargePort",
+            A.driver_tel           "driverTel",
+            A.order_time           "orderTime",
+            A.reserve_arrival_time "reserveArrivalTime",
+            A.sto_reserve_state    "stoReserveState",
+            A.supplier_code        "supplierCode",
+            A.COMPANY_NAME         "companyName",
+            A.ARRIVAL_TIME         "arrivalTime",
+            A.QUEUE_CODE           "queueCode",
+            A.CAR_NUM              "carNum"
+        FROM QUEUE_STO_RESERVE A
+        where A.sto_reserve_state in ('已预约', '排队中', '卸货中', '已完成')
+              and A.driver_tel = #{driverTel}
+        order by A.reserve_arrival_time DESC
+    </select>
+
+    <insert id="saveQueueStoCodeInfo" parameterType="com.queue.demo.domain.QueueStoCode">
+        INSERT INTO QUEUE_STO_CODE A
+        (A.QUEUE_CODE,
+         A.QUEUE_STATE,
+         A.DISCHARGE_PORT,
+         A.DRIVER_TEL,
+         A.STO_RESERVE_ID,
+         A.ARRIVAL_TIME,
+         A.COMPANY_NAME)
+        VALUES
+            (#{queueCode},
+             #{queueState},
+             #{dischargePort},
+             #{driverTel},
+             #{stoReserveId},
+             #{arrivalTime},
+             #{companyName})
+    </insert>
+
+    <select id="getQueueStoCode" resultType="String">
+        SELECT *
+        FROM (SELECT A.QUEUE_CODE "queueCode"
+              FROM QUEUE_STO_RESERVE A
+              where A.ARRIVAL_TIME > #{thisDate}
+              order by QUEUE_CODE DESC)
+        WHERE ROWNUM = 1
+    </select>
+
+    <update id="changeQueueStoReserveState" parameterType="String">
+        update QUEUE_STO_RESERVE a
+        set a.sto_reserve_state = #{stoReserveState},
+            a.Queue_Code        = #{queueCode},
+            a.ARRIVAL_TIME      = #{arrivalTime}
+        where a.sto_reserve_id = #{stoReserveId}
+    </update>
+
+    <select id="getQueueStoCodeInfo" resultType="com.queue.demo.domain.QueueStoCode">
+        SELECT
+            A.QUEUE_CODE     "queueCode",
+            A.QUEUE_STATE    "queueState",
+            A.DISCHARGE_PORT "dischargePort",
+            A.DRIVER_TEL     "driverTel",
+            A.STO_RESERVE_ID "stoReserveId",
+            A.ARRIVAL_TIME   "arrivalTime"
+        FROM QUEUE_STO_code A
+        where A.STO_RESERVE_ID = #{stoReserveId}
+    </select>
+
+    <select id="getQueueStoCodeInfoList" parameterType="String" resultType="com.queue.demo.domain.QueueStoCode">
+        SELECT
+            A.QUEUE_CODE     "queueCode",
+            A.QUEUE_STATE    "queueState",
+            A.DISCHARGE_PORT "dischargePort",
+            A.DRIVER_TEL     "driverTel",
+            A.STO_RESERVE_ID "stoReserveId",
+            A.ARRIVAL_TIME   "arrivalTime"
+        FROM QUEUE_STO_code A
+        where A.QUEUE_STATE = '排队中'
+    </select>
+
+    <select id="getCodeInfoByTel" parameterType="String" resultType="com.queue.demo.domain.QueueStoCode">
+        SELECT
+            A.QUEUE_CODE     "queueCode",
+            A.QUEUE_STATE    "queueState",
+            A.DISCHARGE_PORT "dischargePort",
+            A.DRIVER_TEL     "driverTel",
+            A.STO_RESERVE_ID "stoReserveId",
+            A.ARRIVAL_TIME   "arrivalTime"
+        FROM QUEUE_STO_code A
+        WHERE A.DRIVER_TEL = #{driverTel}
+    </select>
+
+    <update id="finishOrder">
+        update QUEUE_STO_RESERVE A
+        set A.STO_RESERVE_STATE = '已完成'
+        where A.STO_RESERVE_ID = #{stoReserveId}
+    </update>
+
+    <select id="getStoReserveByState" parameterType="String" resultType="com.queue.demo.domain.QueueStoReserve">
+        SELECT
+            A.Sto_Reserve_Id       "stoReserveId",
+            A.discharge_port       "dischargePort",
+            A.driver_tel           "driverTel",
+            A.order_time           "orderTime",
+            A.reserve_arrival_time "reserveArrivalTime",
+            A.sto_reserve_state    "stoReserveState",
+            A.supplier_code        "supplierCode",
+            A.COMPANY_NAME         "companyName",
+            A.ARRIVAL_TIME         "arrivalTime",
+            A.QUEUE_CODE           "queueCode",
+            A.CAR_NUM              "carNum"
+        FROM QUEUE_STO_RESERVE A
+        where A.sto_reserve_state = #{state}
+    </select>
+
+    <select id="getQueueOrder" resultType="String">
+        SELECT *
+        FROM (SELECT A.queue_code "queueCode"
+              FROM QUEUE_STO_RESERVE A
+              where A.Sto_Reserve_State = '排队中'
+                    and a.company_name = #{companyName}
+              order by QUEUE_CODE)
+        WHERE ROWNUM = 1
+    </select>
+
+    <select id="panduanTel" resultType="int">
+        SELECT count(*)
+        FROM QUEUE_STO_RESERVE A
+        where A.Driver_Tel = #{driverTel}
+    </select>
+
+    <insert id="saveComplaintInfo">
+        INSERT INTO QUEUE_COMPLAINT A
+        (A.COMPLAINT_ID,
+         A.DRIVER_TEL,
+         A.DRIVER_CONTENT,
+         A.SUBMIT_TIME)
+        VALUES
+            (#{complaintId},
+             #{driverTel},
+             #{driverContent},
+             #{submitTime})
+    </insert>
+</mapper>

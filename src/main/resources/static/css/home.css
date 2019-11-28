@@ -1,0 +1,193 @@
+.handleInfo {
+    width: 73%;
+    float: left;
+    margin-left: 13%;
+    margin-top: 2%;
+    background-color: #eed1aa40;
+}
+
+.logo {
+    width: 14%;
+    margin-left: 2%;
+    margin-top: 1%;
+    float: left;
+}
+
+.headTitleUp {
+    margin-left: 29%;
+    margin-top: 1%;
+    padding-top: 1%;
+    color: #169ae8;
+    font-weight: 600;
+    font-size: x-large;
+}
+
+.headTitleDown {
+    margin-left: 41%;
+    font-weight: 600;
+    color: #169ae8c2;
+}
+
+.header_card {
+    margin-top: 3%;
+    margin-left: 11%;
+}
+
+.panel {
+    width: 16%;
+    height: 10%;
+    background: #0eb881eb;
+    float: left;
+    margin-left: 2%;
+    color: #ffffffe3;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.panel-content {
+    margin-top: 2%;
+}
+
+.panel-content span {
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+
+.panel-ttle {
+    font-weight: 600;
+}
+
+.div-jiantou {
+    float: left;
+    margin-left: 2%;
+}
+
+.jiantou {
+    font-size: 38px;
+    color: #0eb881eb;
+}
+
+.zhuce {
+    width: 50%;
+    float: left;
+}
+
+.zhuceForm {
+    width: 79%;
+    /*margin-left: 14%;*/
+}
+
+.zhuce-title {
+    text-align: center;
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 2%;
+}
+
+.layui-form-item {
+    margin-bottom: 5px;
+    clear: both;
+}
+
+.layui-form-label {
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    width: 162px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}
+
+.layui-input-block {
+    margin-left: 110px;
+    min-height: 22px;
+}
+
+.layui-input, .layui-textarea {
+    display: block;
+    width: 76%;
+    padding-left: 10px;
+}
+
+.layui-input, .layui-select, .layui-textarea {
+    height: 30px;
+    line-height: 1.3;
+    line-height: 38px \9;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.handleCode {
+    float: left;
+    margin-top: 2%;
+    color: #0b46ee;
+    font-weight: 600;
+}
+
+.handleCodeInput {
+    width: 45%;
+    float: left;
+    background-color: #d5d5d6b8;
+}
+
+.layui-btn {
+    margin-left: 29%;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    padding: 1px 50px;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 25%;
+}
+
+.resetBtn {
+    background-color: #ffb800e6;
+    margin-left: 29%;
+    margin-top: 13%;
+}
+
+.handleSpan {
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin-top: 19%;
+}
+
+.erCode {
+    width: 127px;
+    height: 110px;
+    background: white;
+    border-color: blue;
+    border: groove;
+    margin-left: 84%;
+    float: left;
+    margin-top: -24%;
+    margin-bottom: 8%;
+}
+
+.lingImg {
+    /*background-image: url(../img/lingCode.jpg ?r= new Date().getMilliseconds() )*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#lingCode img {
+    margin-left: 9%;
+    margin-top: 4%;
+}
+
+#zhengCode img {
+    margin-left: 9%;
+    margin-top: 4%;
+}

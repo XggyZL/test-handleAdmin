@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns="http://www.cdi.cn/handle" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ListRecords metedataStandard="86.1000.1002/metadatastandard.20191106001">
+        <record>
+            <header>
+                <!--数据的handleId-->
+                <identifier>${identifier}</identifier>
+                <!--1:保存深度关系 0：不保存深度关系 -->
+                <metadataOption>1</metadataOption>
+            </header>
+            <metadata>
+                <WYSBM>
+                    <value>${WYSBM}</value>
+                </WYSBM>
+                <CPMC>
+                    <value>${CPMC}</value>
+                </CPMC>
+                <GGXH>
+                    <value>${GGXH}</value>
+                </GGXH>
+                <CCRQ>
+                    <value>${CCRQ}</value>
+                </CCRQ>
+                <SCCJ>
+                    <value>${SCCJ}</value>
+                </SCCJ>
+            </metadata>
+        </record>
+    </ListRecords>
+</root>

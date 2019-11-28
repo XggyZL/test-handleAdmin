@@ -1,0 +1,34 @@
+.discharge {
+    width: 300px;
+    font-size: large;
+}
+
+.dischargeContent {
+    width: 300px;
+    font-size: large;
+    margin-left: 180px;
+    font-weight: 600;
+    color: #07d307;
+
+}
+
+.num {
+    width: 241px;
+    float: left;
+}
+
+.page_home_show {
+    margin-bottom: 60px;
+}
+
+.nextNum {
+    width: 336px;
+    font-size: 31px;
+    margin-left: 34px;
+    font-weight: 600;
+    color: #07d307;
+}
+
+.nextCell {
+    margin-top: 38px;
+}

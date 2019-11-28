@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns="http://www.cdi.cn/handle" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ListRecords metedataStandard="86.1000.1002/metadatastandard.20191106002">
+        <record>
+            <header>
+                <!--数据的handleId-->
+                <identifier>${identifier}</identifier>
+                <!--1:保存深度关系 0：不保存深度关系 -->
+                <metadataOption>1</metadataOption>
+            </header>
+            <metadata>
+                <WYSBM>
+                    <value>${WYSBM}</value>
+                </WYSBM>
+                <CPMC>
+                    <value>${CPMC}</value>
+                </CPMC>
+                <GGXH>
+                    <value>${GGXH}</value>
+                </GGXH>
+                <CCRQ>
+                    <value>${CCRQ}</value>
+                </CCRQ>
+                <SCCJ>
+                    <value>${SCCJ}</value>
+                </SCCJ>
+            </metadata>
+            <ListRelations>
+                <!--1:是深度关系 0：不是深度关系 -->
+                <relation isPackage="1">
+                    <relationship>
+                        <!-- 关联的handleId-->
+                        <handleId>${handleId}</handleId>
+                        <!-- 关系的handleId-->
+                        <relationId>86.1000.1002/relation.2c90dfd76d42ff60016e3f8587840007 </relationId>
+                        <!-- 关系项id-->
+                        <relationOptionId>2c90dfd76d42ff60016e3f8587a00008</relationOptionId>
+                    </relationship>
+                </relation>
+            </ListRelations>
+        </record>
+    </ListRecords>
+</root>

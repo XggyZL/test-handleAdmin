@@ -1,0 +1,44 @@
+/** {*/
+    /*touch-action: none;*/
+/*}*/
+
+.weui-cell {
+    padding: 18px 15px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.weui-label {
+    display: block;
+    width: 139px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+#reserveSubmit {
+    width: 270px;
+}
+
+#xiehuo-list_dummy {
+    width: 110px;
+    background-color: transparent;
+    border: 0;
+    font-size: inherit;
+}
+
+#reserveArrivalTip {
+    font-size: medium;
+    color: red;
+    margin-left: 68px;
+}
+
+.weui-driverImg span {
+    background-image: url(img/driverImg.png);
+    transform: rotate(-90deg) translate(-50px, -50px);
+    width: 128%;
+}
