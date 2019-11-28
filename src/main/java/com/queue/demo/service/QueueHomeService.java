@@ -25,7 +25,6 @@ public class QueueHomeService {
     private static String zhengFileName = "saveZhengXml.xml";
 
 
-
     //调用零部件接口
     public Response lingZhuceSub(HandleParam handleParam) throws Exception {
         //将用户页面注册数据，写入xml;
