@@ -65,10 +65,6 @@ public class QueueHomeService {
         return response;
     }
 
-
-
-
-
     public Response zhengjiZhuceSub(HandleParam handleParam) throws Exception {
         //将用户页面注册数据，写入xml;
         SimpleTemplateEngine engine = new SimpleTemplateEngine();
